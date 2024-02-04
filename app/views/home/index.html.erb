@@ -9,6 +9,7 @@
         <th>Interés mensual</th>
         <th>Balance inicial</th>
         <th>Ganancia anual</th>
+        <th>Balance</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
           <td class="p-3"><%="#{investment.interest}%"%></td>
           <td class="p-3"><%=number_to_currency(investment.balance_init)%></td>
           <td class="p-3"><%=number_to_currency(investment.pay)%></td>
+          <td class="p-3"><%=number_to_currency(investment.balance)%></td>
         </tr>
       <% end %>
     </tbody>
