@@ -8,5 +8,6 @@ class Investment
   field :balance, type: Float
 
   validates :coin, :interest, :balance_init, presence: true
-  validates :interest, :balance_init, :pay, :balance, numericality: { greater_than: 0 }
+  validates :interest, :balance_init, numericality: { greater_than: 0 }
+  validates :pay, :balance,  numericality: {greater_than: 0}, allow_nil: true
 end
