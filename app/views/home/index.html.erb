@@ -15,7 +15,8 @@
     <tbody>
       <% @investments.each do |investment| %>
         <tr>
-          <td class="p-3"></td>
+          <td class="p-3" id=<%="#{investment.asset}"%>>
+          </td>
           <td class="p-3"><%=investment.coin%></td>
           <td class="p-3"><%="#{investment.interest}%"%></td>
           <td class="p-3"><%=number_to_currency(investment.balance_init)%></td>
@@ -25,4 +26,6 @@
       <% end %>
     </tbody>
   </table>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </div>

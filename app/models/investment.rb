@@ -1,6 +1,7 @@
 class Investment
   include Mongoid::Document
   include Mongoid::Timestamps
+  field :asset, type: String
   field :coin, type: String
   field :interest, type: Float
   field :balance_init, type: Float
