@@ -1,36 +1,42 @@
-<div class="w-full h-full" data-controller="home" data-item-assets-param=<%=Investment.all.pluck(:asset)%>>
-  <h1 class="backdrop-blur-sm bg-indigo-800/20 font-bold text-3xl text-neutral-700 p-5 uppercase rounded-md">Calculadora de Inversión</h1>
-  <table class="mt-10 p-5 border">
-    <thead>
-      <tr class="gap-4">
-        <th></th>
-        <th></th>
-        <th>Moneda</th>
-        <th>Precio</th>
-        <th>Interés mensual</th>
-        <th>Balance inicial</th>
-        <th>Ganancia anual</th>
-        <th>Balance</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% Investment.all.each do |investment| %>
-        <tr name="invest">
-          <td class="p-3" id=<%="#{investment.asset}"%>></td>
-          <td class="p-3"><%=investment.asset%></td>
-          <td class="p-3"><%=investment.coin%></td>
-          <td class="p-3" id=<%="#{investment.asset}_price"%>></td>
-          <td class="p-3"><%="#{investment.interest}%"%></td>
-          <td class="p-3"><%=number_to_currency(investment.balance_init)%></td>
-          <td class="p-3"><%=number_to_currency(investment.pay)%></td>
-          <td class="p-3"><%=number_to_currency(investment.balance)%></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <%= link_to 'JSON', download_json_path(), class: 'text-bold text-md rounded-md border-2 border px-8 py-2 h-8' %>
-  <%= link_to 'CSV', download_csv_path(), class: 'text-bold text-md rounded-md border-2 border px-8 py-2 h-8' %>
+<div class="w-full h-full" data-controller="home" >
+  <h1 class="font-bold text-3xl text-neutral-200 p-5 uppercase overline tracking-widest">Calculadora de Inversión</h1>
+  <div class="grid grid-cols-4 gap-4 mt-10">
+    <div class="col-span-3">
+      <table class="p-5 shadow-2xl bg-slate-900/50 table-fixed border-collapse">
+        <thead>
+          <tr class="gap-4">
+            <th></th>
+            <th></th>
+            <th>Moneda</th>
+            <th>Interés mensual</th>
+            <th>Balance inicial</th>
+            <th>Ganancia anual</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody class="text-white">
+          <% Investment.all.each do |investment| %>
+            <tr name="invest">
+              <td class="p-3" id=<%="#{investment.asset}"%>></td>
+              <td class="p-3"><%=investment.asset%></td>
+              <td class="p-3"><%=investment.coin%></td>
+              <td class="p-3"><%=investment.interest%> %</td>
+              <td class="p-3"><%=number_to_currency(investment.balance_init)%></td>
+              <td class="p-3"><%=number_to_currency(investment.pay)%></td>
+              <td class="p-3"><%=number_to_currency(investment.balance)%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="flex flex-col">
+      <h1 class="bg-neutral-400 w-full p-7 text-sm font-bold uppercase tracking-widest">Descargar información</h1>
+      <div class="gap-4 flex flex-col mt-2">
+        <%= link_to 'JSON', download_json_path(), class: 'text-bold text-md rounded-md border-2 border p-5 text-white bg-slate-900/30' %>
+        <%= link_to 'CSV', download_csv_path(), class: 'text-bold text-md rounded-md border-2 border p-5 text-white bg-slate-900/30' %>
+      </div>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </div>
