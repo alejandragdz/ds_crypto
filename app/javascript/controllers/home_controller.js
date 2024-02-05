@@ -22,15 +22,19 @@ export default class extends Controller {
         investments.forEach(element => {
           var asset = element.children[1].innerHTML;
           var icon  = res.find((element) => element.asset_id === asset).url;
-          var imag  = new Image(32,32);
-          imag.src  = icon; 
-          document.getElementById(asset).appendChild(imag);
+
+          buildImg(asset, icon);
         });
       }
     ).catch(function (error) {
       console.log(error)
     });
-
     // axios.get(url_btc, config).then(function (response){console.log(response.data[0])}).catch(function (error) {console.log(error)});
+
+    const buildImg = (asset, icon) => {
+      var imag  = new Image(32,32);
+      imag.src  = icon; 
+      document.getElementById(asset).appendChild(imag);
+    };
   }
 }
