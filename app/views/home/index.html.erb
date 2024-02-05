@@ -6,6 +6,7 @@
         <th></th>
         <th></th>
         <th>Moneda</th>
+        <th>Precio</th>
         <th>Interés mensual</th>
         <th>Balance inicial</th>
         <th>Ganancia anual</th>
@@ -18,6 +19,7 @@
           <td class="p-3" id=<%="#{investment.asset}"%>></td>
           <td class="p-3"><%=investment.asset%></td>
           <td class="p-3"><%=investment.coin%></td>
+          <td class="p-3" id=<%="#{investment.asset}_price"%>></td>
           <td class="p-3"><%="#{investment.interest}%"%></td>
           <td class="p-3"><%=number_to_currency(investment.balance_init)%></td>
           <td class="p-3"><%=number_to_currency(investment.pay)%></td>

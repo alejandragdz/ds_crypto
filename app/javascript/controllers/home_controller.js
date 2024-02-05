@@ -15,9 +15,10 @@ let config   = {
 // Connects to data-controller="home"
 export default class extends Controller {
   connect() {
+    var investments = document.getElementsByName("invest");
     axios.get(url_icon, config)
       .then(function (response) {
-        var investments = document.getElementsByName("invest");
+        // var investments = document.getElementsByName("invest");
         let res = response.data
         investments.forEach(element => {
           var asset = element.children[1].innerHTML;
@@ -29,7 +30,18 @@ export default class extends Controller {
     ).catch(function (error) {
       console.log(error)
     });
-    // axios.get(url_btc, config).then(function (response){console.log(response.data[0])}).catch(function (error) {console.log(error)});
+
+    // investments.forEach(element => {
+    //   var url = 'https://rest.coinapi.io/v1/assets/';
+    //   url     = url.concat(element.children[1].innerHTML);
+    //   setTimeout(console.log.bind(null, 'Two second later'), 2000);
+    //   axios.get(url, config)
+    //   .then(function (response){
+
+    //     // console.log(response.data[0])
+
+    //   }).catch(function (error) {console.log(error)});
+    // })
 
     const buildImg = (asset, icon) => {
       var imag  = new Image(32,32);
