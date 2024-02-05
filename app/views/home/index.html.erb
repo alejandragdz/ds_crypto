@@ -1,4 +1,4 @@
-<div class="w-full h-full" data-controller="home" data-item-assets-param=<%=@investments.pluck(:asset)%>>
+<div class="w-full h-full" data-controller="home" data-item-assets-param=<%=Investment.all.pluck(:asset)%>>
   <h1 class="backdrop-blur-sm bg-indigo-800/20 font-bold text-3xl text-neutral-700 p-5 uppercase rounded-md">Calculadora de Inversión</h1>
   <table class="mt-10 p-5 border">
     <thead>
@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @investments.each do |investment| %>
+      <% Investment.all.each do |investment| %>
         <tr name="invest">
           <td class="p-3" id=<%="#{investment.asset}"%>></td>
           <td class="p-3"><%=investment.asset%></td>
@@ -28,6 +28,9 @@
       <% end %>
     </tbody>
   </table>
+
+  <%= link_to 'JSON', download_json_path(), class: 'text-bold text-md rounded-md border-2 border px-8 py-2 h-8' %>
+  <%= link_to 'CSV', download_csv_path(), class: 'text-bold text-md rounded-md border-2 border px-8 py-2 h-8' %>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </div>

@@ -119,6 +119,10 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.7.1)
+    json_builder (3.1.7)
+      activesupport (>= 2.0.0)
+      json
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -255,6 +259,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
+  json_builder
   mongoid
   puma (>= 5.0)
   rails (~> 7.1.3)
