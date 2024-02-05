@@ -1,31 +1,39 @@
 <div class="w-full h-full" data-controller="home" >
   <h1 class="font-bold text-3xl text-neutral-200 p-5 uppercase overline tracking-widest">Calculadora de Inversión</h1>
-  <div class="grid grid-cols-4 gap-4 mt-10">
-    <div class="col-span-3">
+  <div class="grid grid-cols-5 gap-4 mt-10">
+    <div class="col-span-4">
       <table class="p-5 shadow-2xl bg-slate-900/50 table-fixed border-collapse">
         <thead>
           <tr class="gap-4">
             <th></th>
             <th></th>
             <th>Moneda</th>
+            <th>Precio</th>
             <th>Interés mensual</th>
             <th>Balance inicial</th>
             <th>Ganancia anual</th>
             <th>Balance</th>
           </tr>
         </thead>
-        <tbody class="text-white">
+        <tbody class="text-white text-xs">
           <% Investment.all.each do |investment| %>
             <tr name="invest">
               <td class="p-3" id=<%="#{investment.asset}"%>></td>
               <td class="p-3"><%=investment.asset%></td>
               <td class="p-3"><%=investment.coin%></td>
+              <td class="p-3" id=<%="#{investment.asset}_price"%>></td>
               <td class="p-3"><%=investment.interest%> %</td>
               <td class="p-3"><%=number_to_currency(investment.balance_init)%></td>
               <td class="p-3"><%=number_to_currency(investment.pay)%></td>
               <td class="p-3"><%=number_to_currency(investment.balance)%></td>
             </tr>
           <% end %>
+          <tr class="border-4 border-transparent border-t-white">
+            <td></td><td></td><td></td><td></td><td></td>
+            <td class="p-3"><%=number_to_currency(Investment.sum(:balance_init))%></td>
+            <td class="p-3"><%=number_to_currency(Investment.sum(:pay))%></td>
+            <td class="p-3"><%=number_to_currency(Investment.sum(:balance))%></td>
+          </tr>
         </tbody>
       </table>
     </div>
