@@ -1,9 +1,9 @@
-<div class="w-full h-full" data-controller="home">
+<div class="w-full h-full" data-controller="home" data-item-assets-param=<%=@investments.pluck(:asset)%>>
   <h1 class="backdrop-blur-sm bg-indigo-800/20 font-bold text-3xl text-neutral-700 p-5 uppercase rounded-md">Calculadora de Inversión</h1>
-  
   <table class="mt-10 p-5 border">
     <thead>
       <tr class="gap-4">
+        <th></th>
         <th></th>
         <th>Moneda</th>
         <th>Interés mensual</th>
@@ -14,9 +14,9 @@
     </thead>
     <tbody>
       <% @investments.each do |investment| %>
-        <tr>
-          <td class="p-3" id=<%="#{investment.asset}"%>>
-          </td>
+        <tr name="invest">
+          <td class="p-3" id=<%="#{investment.asset}"%>></td>
+          <td class="p-3"><%=investment.asset%></td>
           <td class="p-3"><%=investment.coin%></td>
           <td class="p-3"><%="#{investment.interest}%"%></td>
           <td class="p-3"><%=number_to_currency(investment.balance_init)%></td>

@@ -15,30 +15,22 @@ let config   = {
 // Connects to data-controller="home"
 export default class extends Controller {
   connect() {
-    alert("Hola")
     axios.get(url_icon, config)
       .then(function (response) {
+        var investments = document.getElementsByName("invest");
         let res = response.data
-        let btc = res.find((element) => element.asset_id === "BTC");
-        let ada = res.find((element) => element.asset_id === "ADA");
-        let eth = res.find((element) => element.asset_id === "ETH");
-
-        var img1 = new Image(32,32);
-        var img2 = new Image(32,32);
-        var img3 = new Image(32,32);
-
-        img1.src = btc.url
-        img2.src = eth.url
-        img3.src = ada.url
-
-        document.getElementById("BTC").appendChild(img1);
-        document.getElementById("ETH").appendChild(img2);
-        document.getElementById("ADA").appendChild(img3);
+        investments.forEach(element => {
+          var asset = element.children[1].innerHTML;
+          var icon  = res.find((element) => element.asset_id === asset).url;
+          var imag  = new Image(32,32);
+          imag.src  = icon; 
+          document.getElementById(asset).appendChild(imag);
+        });
       }
     ).catch(function (error) {
       console.log(error)
     });
 
-    axios.get(url_btc, config).then(function (response){console.log(response.data[0])}).catch(function (error) {console.log(error)});
+    // axios.get(url_btc, config).then(function (response){console.log(response.data[0])}).catch(function (error) {console.log(error)});
   }
 }
